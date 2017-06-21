@@ -2,16 +2,11 @@ package mobiskif.healthy;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -20,7 +15,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] names = {"Иван", "Марья", "Петр", "Антон", "Дарья", "Борис", "Костя", "Игорь", "Анна", "Денис", "Андрей"};
+        String[] names = {"Иван", "Марья", "Петр", "Антон", "Дарья", "Борис", "Костя", "Игорь", "Анна", "Денис", "Андрей", "Марья", "Петр", "Антон", "Дарья"};
         ListView lvMain = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         lvMain.setAdapter(adapter);
@@ -28,15 +23,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        TextView tv;
-        boolean en = (((Switch) findViewById(R.id.switch1)).isChecked()) ? true : false;
-        tv = (TextView) findViewById(R.id.editText1);
-        tv.setEnabled(en);
-        tv = (TextView) findViewById(R.id.editText2);
-        tv.setEnabled(en);
-        tv = (TextView) findViewById(R.id.editText3);
-        tv.setEnabled(en);
-        tv = (TextView) findViewById(R.id.editText4);
-        tv.setEnabled(en);
+        Switch sw = (Switch) findViewById(R.id.switch1);
+        ((TextView) findViewById(R.id.editText1)).setEnabled(sw.isChecked());
+        ((TextView) findViewById(R.id.editText2)).setEnabled(sw.isChecked());
+        ((TextView) findViewById(R.id.editText3)).setEnabled(sw.isChecked());
+        ((TextView) findViewById(R.id.editText4)).setEnabled(sw.isChecked());
     }
 }
