@@ -51,6 +51,7 @@ public class DataProviderSOAP extends ContentProvider {
                     .getMethod(action, String.class, Patient.class)
                     .invoke(this, action, patient);
         } catch (Exception e) {
+            L.d(e.toString(),this);
             return defaultList();
         }
     }
