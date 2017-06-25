@@ -7,7 +7,7 @@
     tools:context="mobiskif.healthy.MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
@@ -27,7 +27,7 @@
                 android:id="@+id/spinnerDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6" />
+                android:layout_weight="0.4" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,7 +46,7 @@
                 android:id="@+id/spinnerLPU"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6" />
+                android:layout_weight="0.4" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,17 +64,29 @@
                 android:id="@+id/spinnerSpesiality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6" />
+                android:layout_weight="0.4" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_weight="1"
-            android:onClick="onClick"
-            android:text="Далее" />
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:src="@android:drawable/ic_menu_preferences" />
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="Далее" />
+        </LinearLayout>
 
     </LinearLayout>
 

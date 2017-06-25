@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Healthy</string>
-    <string name="GoogleMapsAPIKey_old" translatable="false">AIzaSyBxXSVokYFSo-Z5REAeJs4Yl6HL_Jhkry0</string>
     <string name="GoogleMapsAPIKey" translatable="false">AIzaSyD7cLprwd8CHp49lAigcbEvhTSziR7Ofh4</string>
 </resources>
