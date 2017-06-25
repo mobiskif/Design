@@ -284,8 +284,8 @@ public class DataProviderSOAP extends ContentProvider {
                 "         <tem:idDoc>"+p.getDoctorID()+"</tem:idDoc>\n" +
                 "         <tem:idLpu>"+p.getLPUid()+"</tem:idLpu>\n" +
                 "         <tem:idPat>"+p.getIdPat()+"</tem:idPat>\n" +
-                "         <tem:visitStart>2017-06-01</tem:visitStart>\n" +
-                "         <tem:visitEnd>2017-06-30</tem:visitEnd>\n" +
+                "         <tem:visitStart>2017-06-25</tem:visitStart>\n" +
+                "         <tem:visitEnd>2017-07-30</tem:visitEnd>\n" +
                 "         <tem:guid>6b2158a1-56e0-4c09-b70b-139b14ffee14</tem:guid>\n" +
                 "      </tem:GetAvaibleAppointments>\n" +
                 "   </soapenv:Body>\n" +
@@ -403,63 +403,66 @@ public class DataProviderSOAP extends ContentProvider {
                 "</soapenv:Envelope>";
 
         XmlPullParser myParser = readSOAP(query, action);
+        if (myParser==null) return defaultList();
+        else {
 
-        String[] from = {"_ID", "column1", "column2", "column3"};
-        int event;
-        String text = null;
-        MatrixCursor mc = new MatrixCursor(from);
-        Object[] row = new Object[from.length];
-        try {
-            event = myParser.getEventType();
-            while (event != XmlPullParser.END_DOCUMENT) {
-                String name = myParser.getName();
-                switch (event) {
-                    case XmlPullParser.START_TAG:
-                        break;
+            String[] from = {"_ID", "column1", "column2", "column3"};
+            int event;
+            String text = null;
+            MatrixCursor mc = new MatrixCursor(from);
+            Object[] row = new Object[from.length];
+            try {
+                event = myParser.getEventType();
+                while (event != XmlPullParser.END_DOCUMENT) {
+                    String name = myParser.getName();
+                    switch (event) {
+                        case XmlPullParser.START_TAG:
+                            break;
 
-                    case XmlPullParser.TEXT:
-                        text = myParser.getText();
-                        break;
+                        case XmlPullParser.TEXT:
+                            text = myParser.getText();
+                            break;
 
-                    case XmlPullParser.END_TAG:
-                        switch (name) {
-                            case "Chief":
-                                break;
-                            case "Contact":
-                                break;
-                            case "Distric":
-                                break;
-                            case "EMail":
-                                break;
-                            case "Hub_ID":
-                                row[0] = text;
-                                break;
-                            case "ID":
-                                break;
-                            case "Org_Address":
-                                row[3] = text;
-                                break;
-                            case "Org_Name":
-                                row[1] = text;
-                                break;
-                            case "Org_Type":
-                                row[2] = null;
-                                if(row[0]!=null) mc.addRow(row);
-                                break;
-                            case "WWW":
-                                break;
-                            default:
-                                break;
-                        }
-                        text = null;
+                        case XmlPullParser.END_TAG:
+                            switch (name) {
+                                case "Chief":
+                                    break;
+                                case "Contact":
+                                    break;
+                                case "Distric":
+                                    break;
+                                case "EMail":
+                                    break;
+                                case "Hub_ID":
+                                    row[0] = text;
+                                    break;
+                                case "ID":
+                                    break;
+                                case "Org_Address":
+                                    row[3] = text;
+                                    break;
+                                case "Org_Name":
+                                    row[1] = text;
+                                    break;
+                                case "Org_Type":
+                                    row[2] = null;
+                                    if (row[0] != null) mc.addRow(row);
+                                    break;
+                                case "WWW":
+                                    break;
+                                default:
+                                    break;
+                            }
+                            text = null;
+                    }
+                    event = myParser.next();
                 }
-                event = myParser.next();
+            } catch (Exception e) {
+                L.d("Ошибка парсинга SOAP " + e.toString(), this);
+                return defaultList();
             }
-        } catch (Exception e) {
-            L.d("Ошибка парсинга SOAP " + e.toString(), this);
-            return defaultList();
+            return mc;
         }
-        return mc;
     }
 
     XmlPullParser readSOAP(String body, String action) {

@@ -36,8 +36,8 @@ public class DataAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup group) {
-        View view = (convertView==null) ? inflater.inflate(R.layout.cursor_items, group, false) : convertView;
         cursor.moveToPosition(position);
+        View view = (convertView==null) ? inflater.inflate(R.layout.cursor_items, group, false) : convertView;
         ((TextView) view.findViewById(R.id.textView1)).setText(cursor.getString(0));
         ((TextView) view.findViewById(R.id.textView2)).setText(cursor.getString(1));
         ((TextView) view.findViewById(R.id.textView3)).setText(cursor.getString(2));

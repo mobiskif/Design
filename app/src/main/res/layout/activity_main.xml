@@ -8,144 +8,88 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/i_0656" />
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="onClick" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/editText1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:duplicateParentState="false"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:paddingEnd="8dp"
-                    android:text="Дамбраускас" />
-
-                <EditText
-                    android:id="@+id/editText2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:duplicateParentState="false"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:paddingEnd="8dp"
-                    android:text="Феликс" />
-
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:duplicateParentState="false"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:paddingEnd="8dp"
-                    android:text="Сигизмундович" />
-
-                <EditText
-                    android:id="@+id/editText4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:duplicateParentState="false"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:paddingEnd="8dp"
-                    android:text="1901-04-22" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onClick"
-                android:text="Талончик" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onClick"
-                android:text="Доктор" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:text="Район" />
 
+            <mobiskif.healthy.BaseSpinnerView
+                android:id="@+id/spinnerDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Поликлиника" />
+
+            <mobiskif.healthy.BaseSpinnerView
+                android:id="@+id/spinnerLPU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Специальность" />
+
+            <mobiskif.healthy.BaseSpinnerView
+                android:id="@+id/spinnerSpesiality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="Далее" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.62"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <com.google.android.gms.maps.MapView
+        <mobiskif.healthy.BaseMapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:visibility="gone" />
-
-        <mobiskif.healthy.BaseListView
-            android:id="@+id/myList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:apiKey="@string/GoogleMapsAPIKey"
+            android:visibility="visible" />
 
     </LinearLayout>
 

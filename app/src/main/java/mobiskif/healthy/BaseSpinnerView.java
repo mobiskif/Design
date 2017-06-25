@@ -6,27 +6,27 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
-import android.widget.ListView;
+import android.widget.Spinner;
 
 /**
  * Created by mobis on 22.06.2017.
  */
 
-public class BaseListView extends ListView {
+public class BaseSpinnerView extends Spinner {
     String action;
     Context context;
 
-    public BaseListView(Context context) {
+    public BaseSpinnerView(Context context) {
         super(context);
         this.context=context;
     }
 
-    public BaseListView(Context context, AttributeSet attrs) {
+    public BaseSpinnerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context=context;
     }
 
-    public BaseListView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseSpinnerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context=context;
     }
@@ -54,4 +54,5 @@ public class BaseListView extends ListView {
         };
         at.execute(context);
     }
+
 }

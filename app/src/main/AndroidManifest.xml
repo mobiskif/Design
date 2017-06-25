@@ -21,8 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapsActivity"></activity>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBxXSVokYFSo-Z5REAeJs4Yl6HL_Jhkry0"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD7cLprwd8CHp49lAigcbEvhTSziR7Ofh4" />
+
+        <activity
+            android:name=".TicketActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
