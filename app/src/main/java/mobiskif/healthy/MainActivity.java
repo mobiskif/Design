@@ -12,10 +12,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Patient patient = new Patient(this);
-        //patient.setLPUid("27","Кожвен");
-        //patient.setIdPat("452529");
-        //patient.setDoctorID("11", "Иванов");
+        Patient patient = new Patient(this);
+        patient.setLPUid("27","Кожвен");
+        patient.setIdPat("452529");
+        patient.setDoctorID("11", "Иванов");
         controller = new Controller(this);
 
         ((BaseSpinnerView) findViewById(R.id.spinnerDistrict)).setAction("GetDistrictList");
