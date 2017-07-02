@@ -1,19 +1,89 @@
 package mobiskif.healthy;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.MatrixCursor;
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
-/**
- * Created by mobis on 10.06.2017.
- */
-
-public class Patient {
+public class Patient implements AdapterView.OnItemSelectedListener {
     SharedPreferences settings;
-    Context context;
+    Activity activity;
 
-    public Patient(Context c) {
-        context = c;
-        settings = context.getSharedPreferences("n3", 0);
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        L.d(parent.getId()+" "+position + " "+ view ,this);
+        MatrixCursor item = (MatrixCursor) parent.getAdapter().getItem(position);
+
+        switch (parent.getId()) {
+            case R.id.spinnerDistrict:
+                setVal("GetDistrictList_SpinnerPosition", position);
+                setVal("GetDistrictList_ID", item.getInt(0));
+                //setVal("GetLPUList_SpinnerPosition", 0);
+                prepareSpinner((Spinner)activity.findViewById(R.id.spinnerLPU));
+                break;
+            case R.id.spinnerLPU:
+                setVal("GetLPUList_SpinnerPosition", position);
+                setVal("GetLPUList_ID", item.getInt(0));
+                //setVal("GetSpesialityList_SpinnerPosition", 0);
+                prepareSpinner((Spinner)activity.findViewById(R.id.spinnerSpesiality));
+                break;
+            case R.id.spinnerSpesiality: setVal("GetSpesialityList_SpinnerPosition", position);  break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    public void prepareSpinner(final Spinner ds) {
+        ds.setOnItemSelectedListener(this);
+        String action = null;
+        switch (ds.getId()) {
+            case R.id.spinnerDistrict: action="GetDistrictList"; break;
+            case R.id.spinnerLPU: action="GetLPUList"; break;
+            case R.id.spinnerSpesiality: action="GetSpesialityList"; break;
+        }
+
+        final String finalAction = action;
+        AsyncTask at = new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] o) {
+                return new ActionAdapter(activity, finalAction);
+            }
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                SpinnerAdapter adapter = (SpinnerAdapter) o;
+                ds.setAdapter(adapter);
+                int position = getVal(finalAction+"_SpinnerPosition");
+                if (position<adapter.getCount()) ds.setSelection(position);
+            }
+        };
+        at.execute(activity);
+    }
+
+    public int getVal(String key) {
+        SharedPreferences settings = activity.getSharedPreferences("n3", 0);
+        return Integer.valueOf(settings.getString(key,"0"));
+    }
+
+    public void setVal(String key, int val) {
+        SharedPreferences settings = activity.getSharedPreferences("n3", 0);
+        SharedPreferences.Editor ed = settings.edit();
+        ed.putString(key, String.valueOf(val));
+        ed.apply();
+    }
+
+    public Patient(Activity a) {
+        activity = a;
+        settings = activity.getSharedPreferences("n3", 0);
     }
 
     public void setName(String s) {
@@ -143,11 +213,13 @@ public class Patient {
     }
 
     public String getDistrictID() { //меняется автоматически (в каждой поликлинике свой)
-        return settings.getString("idDistrict","");
+        //return settings.getString("idDistrict","");
+        return settings.getString("GetDistrictList_ID","");
     }
 
     public String getLPUid() { //меняется автоматически (в каждой поликлинике свой)
-        return settings.getString("idLPU","");
+        //return settings.getString("idLPU","");
+        return settings.getString("GetLPUList_ID","");
     }
 
     public String getSpesialityID() { //меняется автоматически (в каждой поликлинике свой)
@@ -159,7 +231,7 @@ public class Patient {
     }
 
     public Context getContext() {
-        return context;
+        return activity;
     }
 
     public void setAppointment(String s, String value) {

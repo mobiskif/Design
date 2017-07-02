@@ -2,10 +2,9 @@ package mobiskif.healthy;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 /**
@@ -13,7 +12,6 @@ import android.widget.ListView;
  */
 
 public class BaseListView extends ListView {
-    String action;
     Context context;
 
     public BaseListView(Context context) {
@@ -31,25 +29,16 @@ public class BaseListView extends ListView {
         this.context=context;
     }
 
-    public void setAction(String s) {
-        action = s;
-        refresh();
-    }
-
-    public void refresh() {
+    public void setAction(final String action) {
         AsyncTask at = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] o) {
-                Uri uri = Uri.parse("content://com.n3/" + action);
-                Cursor cursor = new DataProviderSOAP((Activity) o[0]).query(uri, null, null, null, null);
-                DataAdapter adapter = new DataAdapter((Activity) o[0], cursor);
-                cursor.close();
-                return adapter;
+                return new ActionAdapter((Activity) o[0], action);
             }
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                setAdapter((DataAdapter)o);
+                setAdapter((ListAdapter)o);
             }
         };
         at.execute(context);

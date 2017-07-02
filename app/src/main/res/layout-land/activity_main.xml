@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:text="Район" />
 
-            <mobiskif.healthy.BaseSpinnerView
+            <Spinner
                 android:id="@+id/spinnerDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:layout_weight="1"
                 android:text="Поликлиника" />
 
-            <mobiskif.healthy.BaseSpinnerView
+            <Spinner
                 android:id="@+id/spinnerLPU"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:text="Специальность" />
 
-            <mobiskif.healthy.BaseSpinnerView
+            <Spinner
                 android:id="@+id/spinnerSpesiality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

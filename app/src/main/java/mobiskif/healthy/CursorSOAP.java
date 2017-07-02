@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -23,14 +22,16 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class DataProviderSOAP extends ContentProvider {
+public class CursorSOAP extends ContentProvider {
     Activity activity;
 
-    public DataProviderSOAP() {
+    /*
+    public CursorSOAP() {
         super();
     }
+    */
 
-    public DataProviderSOAP(Activity a) {
+    public CursorSOAP(Activity a) {
         super();
         activity = a;
     }
@@ -73,6 +74,7 @@ public class DataProviderSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
+        mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -126,6 +128,7 @@ public class DataProviderSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
+        mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -180,6 +183,7 @@ public class DataProviderSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
+        mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -238,6 +242,7 @@ public class DataProviderSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
+        mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {

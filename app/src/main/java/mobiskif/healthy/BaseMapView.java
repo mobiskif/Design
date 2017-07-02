@@ -2,14 +2,13 @@ package mobiskif.healthy;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
+import android.widget.Adapter;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,14 +19,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-/**
- * Created by mobis on 24.06.2017.
- */
-
 public class BaseMapView extends MapView implements OnMapReadyCallback {
     public GoogleMap mMap;
     private LocationManager locationManager;
-    Activity activity;
+    //Activity activity;
     int Zoom = 13;
     Context context;
     Geocoder coder;
@@ -50,21 +45,17 @@ public class BaseMapView extends MapView implements OnMapReadyCallback {
         super(context, attributeSet, i);
     }
 
-    public void refresh(Context context) {
+    public void refresh(final Context context) {
         //locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         AsyncTask at = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] o) {
-                Uri uri = Uri.parse("content://com.n3/GetOrgList");
-                Cursor cursor = new DataProviderSOAP((Activity) o[0]).query(uri, null, null, null, null);
-                DataAdapter adapter = new DataAdapter((Activity) o[0], cursor);
-                cursor.close();
-                return adapter;
+                return new ActionAdapter( (Activity) o[0], "GetOrgList");
             }
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                prepareMap((DataAdapter)o);
+                prepareMap((Adapter)o);
             }
         };
         at.execute(context);
@@ -77,7 +68,7 @@ public class BaseMapView extends MapView implements OnMapReadyCallback {
         refresh(context);
     }
 
-    void prepareMap(DataAdapter adapter) {
+    void prepareMap(Adapter adapter) {
         LatLng mapCenter = new LatLng(59.857, 30.204);
         int nrows = adapter.getCount();
         if (nrows > 5) nrows = 5;
