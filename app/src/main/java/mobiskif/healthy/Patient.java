@@ -1,11 +1,11 @@
 package mobiskif.healthy;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.MatrixCursor;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -30,17 +30,34 @@ public class Patient implements AdapterView.OnItemSelectedListener {
                 setVal("GetLPUList_SpinnerPosition", position);
                 setVal("GetLPUList_ID", item.getInt(0));
                 //setVal("GetSpesialityList_SpinnerPosition", 0);
+                checkPatient();
                 prepareSpinner((Spinner)activity.findViewById(R.id.spinnerSpesiality));
                 break;
             case R.id.spinnerSpesiality: setVal("GetSpesialityList_SpinnerPosition", position);  break;
         }
     }
 
+    private void checkPatient() {
+        AsyncTask at = new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] o) {
+                return new ActionAdapter(activity, "CheckPatient");
+            }
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                Adapter adapter = (Adapter) o;
+                MatrixCursor mc = (MatrixCursor) adapter.getItem(0);
+                setVal("idPat", mc.getInt(0));
+            }
+        };
+        at.execute(activity);
+    }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
     public void prepareSpinner(final Spinner ds) {
         ds.setOnItemSelectedListener(this);
@@ -228,10 +245,6 @@ public class Patient implements AdapterView.OnItemSelectedListener {
 
     public String getDoctorID() { //меняется автоматически (в каждой поликлинике свой)
         return settings.getString("idDoc","");
-    }
-
-    public Context getContext() {
-        return activity;
     }
 
     public void setAppointment(String s, String value) {

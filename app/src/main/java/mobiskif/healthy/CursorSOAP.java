@@ -25,12 +25,6 @@ import javax.net.ssl.HttpsURLConnection;
 public class CursorSOAP extends ContentProvider {
     Activity activity;
 
-    /*
-    public CursorSOAP() {
-        super();
-    }
-    */
-
     public CursorSOAP(Activity a) {
         super();
         activity = a;
@@ -52,7 +46,7 @@ public class CursorSOAP extends ContentProvider {
                     .getMethod(action, String.class, Patient.class)
                     .invoke(this, action, patient);
         } catch (Exception e) {
-            L.d(e.toString(),this);
+            //L.d(e.toString(),this);
             return defaultList();
         }
     }
