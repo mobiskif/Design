@@ -10,7 +10,7 @@ public class TicketActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ticket_activity);
-        //((ListView) findViewById(R.id.timeList)).setAction("GetAvaibleAppointments");
+        ((BaseListView) findViewById(R.id.timeList)).setAction("GetAvaibleAppointments");
     }
 
     @Override

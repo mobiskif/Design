@@ -33,7 +33,16 @@ public class Patient implements AdapterView.OnItemSelectedListener {
                 checkPatient();
                 prepareSpinner((Spinner)activity.findViewById(R.id.spinnerSpesiality));
                 break;
-            case R.id.spinnerSpesiality: setVal("GetSpesialityList_SpinnerPosition", position);  break;
+            case R.id.spinnerSpesiality:
+                setVal("GetSpesialityList_SpinnerPosition", position);
+                setVal("GetSpesialityList_ID", item.getInt(0));
+                prepareSpinner((Spinner)activity.findViewById(R.id.spinnerDoctor));
+                break;
+            case R.id.spinnerDoctor:
+                setVal("GetDoctorList_SpinnerPosition", position);
+                setVal("GetDoctorList_ID", item.getInt(0));
+                prepareSpinner((Spinner)activity.findViewById(R.id.spinnerDoctor));
+                break;
         }
     }
 
@@ -66,6 +75,7 @@ public class Patient implements AdapterView.OnItemSelectedListener {
             case R.id.spinnerDistrict: action="GetDistrictList"; break;
             case R.id.spinnerLPU: action="GetLPUList"; break;
             case R.id.spinnerSpesiality: action="GetSpesialityList"; break;
+            case R.id.spinnerDoctor: action="GetDoctorList"; break;
         }
 
         final String finalAction = action;
@@ -240,11 +250,13 @@ public class Patient implements AdapterView.OnItemSelectedListener {
     }
 
     public String getSpesialityID() { //меняется автоматически (в каждой поликлинике свой)
-        return settings.getString("idSpesiality","");
+        //return settings.getString("idSpesiality","");
+        return settings.getString("GetSpesialityList_ID","");
     }
 
     public String getDoctorID() { //меняется автоматически (в каждой поликлинике свой)
-        return settings.getString("idDoc","");
+        //return settings.getString("idDoc","");
+        return settings.getString("GetDoctorList_ID","");
     }
 
     public void setAppointment(String s, String value) {

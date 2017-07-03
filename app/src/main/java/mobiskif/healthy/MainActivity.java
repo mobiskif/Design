@@ -27,9 +27,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     public void prepareSpinners() {
-        //this.patient = patient;
         patient.prepareSpinner( (Spinner)findViewById(R.id.spinnerDistrict) );
         patient.prepareSpinner( (Spinner)findViewById(R.id.spinnerLPU) );
         patient.prepareSpinner( (Spinner)findViewById(R.id.spinnerSpesiality) );
+        patient.prepareSpinner( (Spinner)findViewById(R.id.spinnerDoctor) );
     }
 }
