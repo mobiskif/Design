@@ -68,7 +68,7 @@ public class CursorSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
-        mc.addRow(row);
+        //mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -122,7 +122,7 @@ public class CursorSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
-        mc.addRow(row);
+        //mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -177,7 +177,7 @@ public class CursorSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
-        mc.addRow(row);
+        //mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
@@ -236,7 +236,7 @@ public class CursorSOAP extends ContentProvider {
         String text = null;
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
-        mc.addRow(row);
+        //mc.addRow(row);
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {

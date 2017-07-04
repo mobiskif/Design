@@ -45,7 +45,7 @@ public class BaseMapView extends MapView implements OnMapReadyCallback {
         super(context, attributeSet, i);
     }
 
-    public void refresh(final Context context) {
+    public void refresh() {
         //locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         AsyncTask at = new AsyncTask() {
             @Override
@@ -65,7 +65,7 @@ public class BaseMapView extends MapView implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        refresh(context);
+        refresh();
     }
 
     void prepareMap(Adapter adapter) {

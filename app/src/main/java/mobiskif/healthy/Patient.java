@@ -40,7 +40,7 @@ public class Patient implements AdapterView.OnItemSelectedListener {
                 break;
             case R.id.spinnerDoctor:
                 setVal("GetDoctorList_SpinnerPosition", position);
-                setVal("GetDoctorList_ID", item.getInt(0));
+                setVal("GetDoctorList_ID", item.getString(0));
                 prepareSpinner((Spinner)activity.findViewById(R.id.spinnerDoctor));
                 break;
         }
@@ -94,6 +94,7 @@ public class Patient implements AdapterView.OnItemSelectedListener {
             }
         };
         at.execute(activity);
+       // ds.setPrompt("Jopa");
     }
 
     public int getVal(String key) {
@@ -105,6 +106,12 @@ public class Patient implements AdapterView.OnItemSelectedListener {
         SharedPreferences settings = activity.getSharedPreferences("n3", 0);
         SharedPreferences.Editor ed = settings.edit();
         ed.putString(key, String.valueOf(val));
+        ed.apply();
+    }
+    public void setVal(String key, String val) {
+        SharedPreferences settings = activity.getSharedPreferences("n3", 0);
+        SharedPreferences.Editor ed = settings.edit();
+        ed.putString(key, val);
         ed.apply();
     }
 
