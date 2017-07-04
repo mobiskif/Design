@@ -9,17 +9,19 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.widget.Adapter;
+import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class BaseMapView extends MapView implements OnMapReadyCallback {
+public class BaseMapView extends MapView implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     public GoogleMap mMap;
     private LocationManager locationManager;
     //Activity activity;
@@ -65,6 +67,7 @@ public class BaseMapView extends MapView implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMarkerClickListener(this);
         refresh();
     }
 
@@ -100,5 +103,14 @@ public class BaseMapView extends MapView implements OnMapReadyCallback {
     void moveTo(double lat, double lng) {
         LatLng mapCenter = new LatLng(lat, lng);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapCenter, Zoom));
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        L.d(marker.getTitle());
+        Spinner lpu = (Spinner) ((Activity)context).findViewById(R.id.spinnerLPU);
+        lpu.setSelection(2);
+
+        return false;
     }
 }

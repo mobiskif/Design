@@ -41,7 +41,7 @@ public class Patient implements AdapterView.OnItemSelectedListener {
             case R.id.spinnerDoctor:
                 setVal("GetDoctorList_SpinnerPosition", position);
                 setVal("GetDoctorList_ID", item.getString(0));
-                prepareSpinner((Spinner)activity.findViewById(R.id.spinnerDoctor));
+                //prepareSpinner((Spinner)activity.findViewById(R.id.spinnerDoctor));
                 break;
         }
     }
