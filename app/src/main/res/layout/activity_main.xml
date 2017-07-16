@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -96,12 +97,12 @@
                 android:gravity="start"
                 android:orientation="horizontal">
 
-                <ImageButton
+                <Button
                     android:id="@+id/btnSettings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onClick"
-                    android:src="@android:drawable/ic_menu_preferences" />
+                    android:text="Я" />
 
                 <Button
                     android:id="@+id/btnNext"
@@ -109,6 +110,20 @@
                     android:layout_height="wrap_content"
                     android:onClick="onClick"
                     android:text="Далее" />
+
+                <Button
+                    android:id="@+id/btnVoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="Микрофон" />
+
+                <Button
+                    android:id="@+id/btnTTS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="TTS" />
             </LinearLayout>
 
 
@@ -122,7 +137,7 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <mobiskif.healthy.BaseMapView
+        <mobiskif.healthy.GoogleMapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -3,25 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="mobiskif.healthy.MainActivity">
 
     <DatePicker
         android:id="@+id/datePicker"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:calendarViewShown="true"
         android:datePickerMode="spinner"
         android:spinnersShown="false" />
 
-    <mobiskif.healthy.BaseListView
+    <ListView
         android:id="@+id/timeList"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
 

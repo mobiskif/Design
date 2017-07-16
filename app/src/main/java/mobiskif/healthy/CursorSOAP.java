@@ -39,12 +39,12 @@ public class CursorSOAP extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         String action = uri.getLastPathSegment();
-        Patient patient = new Patient(activity);
+        //Patient patient = new Patient(activity);
         try {
             return (Cursor) this
                     .getClass()
                     .getMethod(action, String.class, Patient.class)
-                    .invoke(this, action, patient);
+                    .invoke(this, action, new Patient(activity));
         } catch (Exception e) {
             //L.d(e.toString(),this);
             return defaultList();

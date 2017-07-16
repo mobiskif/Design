@@ -21,7 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class BaseMapView extends MapView implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class GoogleMapView extends MapView implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     public GoogleMap mMap;
     private LocationManager locationManager;
     //Activity activity;
@@ -29,11 +29,11 @@ public class BaseMapView extends MapView implements OnMapReadyCallback, GoogleMa
     Context context;
     Geocoder coder;
 
-    public BaseMapView(Context context) {
+    public GoogleMapView(Context context) {
         super(context);
     }
 
-    public BaseMapView(Context context, AttributeSet attributeSet) {
+    public GoogleMapView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         if ( !isInEditMode() ) {
             this.context = context;
@@ -43,7 +43,7 @@ public class BaseMapView extends MapView implements OnMapReadyCallback, GoogleMa
         }
     }
 
-    public BaseMapView(Context context, AttributeSet attributeSet, int i) {
+    public GoogleMapView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
     }
 
@@ -107,7 +107,7 @@ public class BaseMapView extends MapView implements OnMapReadyCallback, GoogleMa
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        L.d(marker.getTitle());
+        L.d(marker.getTitle(),this);
         Spinner lpu = (Spinner) ((Activity)context).findViewById(R.id.spinnerLPU);
         lpu.setSelection(2);
 
