@@ -25,6 +25,10 @@ import javax.net.ssl.HttpsURLConnection;
 public class CursorSOAP extends ContentProvider {
     Activity activity;
 
+    public CursorSOAP() {
+        super();
+    }
+
     public CursorSOAP(Activity a) {
         super();
         activity = a;
@@ -294,7 +298,7 @@ public class CursorSOAP extends ContentProvider {
 
         String[] from = {"_ID", "column1", "column2", "column3"};
         int event;
-        String text = null;
+        String text = "";
         MatrixCursor mc = new MatrixCursor(from);
         Object[] row = new Object[from.length];
         try {

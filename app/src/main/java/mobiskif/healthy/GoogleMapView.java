@@ -56,7 +56,7 @@ public class GoogleMapView extends MapView implements OnMapReadyCallback, Google
             }
             @Override
             protected void onPostExecute(Object o) {
-                super.onPostExecute(o);
+                //super.onPostExecute(o);
                 prepareMap((Adapter)o);
             }
         };
@@ -94,10 +94,9 @@ public class GoogleMapView extends MapView implements OnMapReadyCallback, Google
             Address location = address.get(0);
             lat = location.getLatitude();
             lng = location.getLongitude();
-        } catch (Exception e) {}
+        } catch (Exception e) {e.printStackTrace();}
         //moveTo(lat,lng);
-        LatLng mapCenter = new LatLng(lat, lng);
-        return mapCenter;
+        return new LatLng(lat, lng);
     }
 
     void moveTo(double lat, double lng) {
@@ -108,7 +107,7 @@ public class GoogleMapView extends MapView implements OnMapReadyCallback, Google
     @Override
     public boolean onMarkerClick(Marker marker) {
         L.d(marker.getTitle(),this);
-        Spinner lpu = (Spinner) ((Activity)context).findViewById(R.id.spinnerLPU);
+        Spinner lpu = ((Activity)context).findViewById(R.id.spinnerLPU);
         lpu.setSelection(2);
 
         return false;

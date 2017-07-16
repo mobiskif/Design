@@ -2,10 +2,6 @@ package mobiskif.healthy;
 
 import android.util.Log;
 
-/**
- * Created by user on 07.06.2017.
- */
-
 public class L {
 
     static void d(int i) {

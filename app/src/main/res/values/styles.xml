@@ -1,13 +1,16 @@
 <resources>
     <style name="AppTheme" parent="android:Theme.Material.Light">
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
 
     </style>
 
-    <style name="BaseListView" parent="android:TextAppearance.DeviceDefault.Medium">
+    <style name="CursorItem" parent="android:TextAppearance.DeviceDefault.Medium">
         <item name="android:padding">16dp</item>
     </style>
 
-    <style name="SplashTheme" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 

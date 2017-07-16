@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.speech.tts.TextToSpeech;
 
-/**
- * Created by mobis on 16.07.2017.
- */
-
 public class GoogleSpeech extends TextToSpeech {
 
     public GoogleSpeech(Context context, OnInitListener listener) {
@@ -20,6 +16,7 @@ public class GoogleSpeech extends TextToSpeech {
         }
     }
 
+    /*
     private void selectFile(String type) {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -32,7 +29,6 @@ public class GoogleSpeech extends TextToSpeech {
         if (requestCode==666) {
             L.d(data.getExtras().getString("query"),this);
         }
-        /*
         else if (requestCode == 7 && data != null) {
             //Uri uri = data.getData();
             try {
@@ -66,6 +62,6 @@ public class GoogleSpeech extends TextToSpeech {
                 L.d("Не могу говорить: "+e.toString(),this);
             }
         }
-        */
     }
+    */
 }

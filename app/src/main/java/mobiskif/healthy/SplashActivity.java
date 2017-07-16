@@ -18,8 +18,7 @@ public class SplashActivity extends Activity {
     }
 
     private boolean isConfigured() {
-        if ((new Patient(this)).getBirstdate().length()>3) return true;
-        else return false;
+        return (new Patient(this)).getBirstdate().length() > 3;
     }
 
     @Override

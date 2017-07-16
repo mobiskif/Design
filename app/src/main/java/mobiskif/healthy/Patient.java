@@ -46,7 +46,10 @@ public class Patient implements AdapterView.OnItemSelectedListener {
         }
     }
 
-    private void checkPatient() {
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {}
+
+    public void checkPatient() {
         AsyncTask at = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] o) {
@@ -54,18 +57,13 @@ public class Patient implements AdapterView.OnItemSelectedListener {
             }
             @Override
             protected void onPostExecute(Object o) {
-                super.onPostExecute(o);
+                //super.onPostExecute(o);
                 Adapter adapter = (Adapter) o;
                 MatrixCursor mc = (MatrixCursor) adapter.getItem(0);
                 setVal("idPat", mc.getInt(0));
             }
         };
         at.execute(activity);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public void prepareSpinner(final Spinner ds) {
@@ -76,6 +74,7 @@ public class Patient implements AdapterView.OnItemSelectedListener {
             case R.id.spinnerLPU: action="GetLPUList"; break;
             case R.id.spinnerSpesiality: action="GetSpesialityList"; break;
             case R.id.spinnerDoctor: action="GetDoctorList"; break;
+            case R.id.timeList: action="SetAppointment"; break;
         }
 
         final String finalAction = action;
@@ -86,7 +85,7 @@ public class Patient implements AdapterView.OnItemSelectedListener {
             }
             @Override
             protected void onPostExecute(Object o) {
-                super.onPostExecute(o);
+                //super.onPostExecute(o);
                 SpinnerAdapter adapter = (SpinnerAdapter) o;
                 ds.setAdapter(adapter);
                 int position = getVal(finalAction+"_SpinnerPosition");
@@ -101,7 +100,6 @@ public class Patient implements AdapterView.OnItemSelectedListener {
         SharedPreferences settings = activity.getSharedPreferences("n3", 0);
         return Integer.valueOf(settings.getString(key,"0"));
     }
-
     public void setVal(String key, int val) {
         SharedPreferences settings = activity.getSharedPreferences("n3", 0);
         SharedPreferences.Editor ed = settings.edit();

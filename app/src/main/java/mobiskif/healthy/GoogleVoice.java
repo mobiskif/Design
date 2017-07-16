@@ -26,7 +26,7 @@ public class GoogleVoice {
 	 */
 	public static void listen(Activity ownerActivity) {
 		// проверяем есть ли активити для распознавания
-		if (isSpeechRecognitionActivityPresented(ownerActivity) == true) {
+		if (isSpeechRecognitionActivityPresented(ownerActivity)) {
 			// если есть - запускаем распознавание
 			startRecognitionActivity(ownerActivity);
 		} else {
@@ -51,9 +51,7 @@ public class GoogleVoice {
 			if (activities.size() != 0) {	// если список не пустой	
 				return true;				// то умеем распознавать речь
 			}
-		} catch (Exception e) {
-			
-		}
+		} catch (Exception e) {e.printStackTrace();}
 		
 		return false; // не умеем распозновать речь
 	}
@@ -101,7 +99,8 @@ public class GoogleVoice {
 						// Голосовой Поиск имя пакета: com.google.android.voicesearch
 						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.voicesearch"));
 						// настраиваем флаги, чтобы маркет не папал к в историю нашего приложения (стек активити)
-						intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+						//intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 						// отправляем Intent
 						ownerActivity.startActivity(intent);
 					 } catch (Exception ex) {
